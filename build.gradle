@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+javafx{
+    modules = ['javafx.controls', 'javafx.fxml']
+    version = "21"
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'org.hibernate.orm:hibernate-core:7.0.0.CR1'
+    implementation 'org.hibernate.validator:hibernate-validator:9.0.0.CR1'
+    implementation 'org.glassfish:jakarta.el:4.0.2'
+    implementation 'org.hibernate.orm:hibernate-community-dialects:7.0.0.CR1'
+
+    implementation 'org.xerial:sqlite-jdbc:3.49.1.0'
+}
+
+application{
+    mainClass = 'org.example.Main'
+}
+
+jar{
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest{
+        attributes('Main-Class':'org.example.Main')
+    }
+
+    from{
+        configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it)}
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
