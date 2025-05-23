@@ -1,14 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.VanzatorHomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="589.0" prefWidth="908.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.VanzatorHomeController">
+   <children>
+      <TabPane prefHeight="589.0" prefWidth="908.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="vanzariTab" text="Vanzari">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="604.0">
+                     <children>
+                        <Button fx:id="logoutVanzareButton" layoutX="839.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="Logout" />
+                         <TableView fx:id="produseVanzareTable" layoutX="14.0" layoutY="40.0" prefHeight="200.0" prefWidth="498.0">
+                             <columns>
+                                 <TableColumn fx:id="denumireProdusVanzareColumn" prefWidth="75.0" text="Denumire" />
+                                 <TableColumn fx:id="pretProdusVanzareColumn" prefWidth="46.199981689453125" text="Pret" />
+                                 <TableColumn fx:id="umProdusVanzareColumn" prefWidth="34.79998779296875" text="U.M." />
+                                 <TableColumn fx:id="valabilitateProdusVanzareColumn" prefWidth="94.40000915527344" text="Valabilitate" />
+                                 <TableColumn fx:id="ingredienteProdusVanzareColumn" prefWidth="76.4000244140625" text="Ingrediente" />
+                                 <TableColumn fx:id="observatiiProdusVanzareColumn" prefWidth="76.79998779296875" text="Observatii" />
+                                 <TableColumn fx:id="disponibilitateProdusVanzareColumn" prefWidth="92.60003662109375" text="Disponibilitate" />
+                             </columns>
+                         </TableView>
+                        <Label layoutX="24.0" layoutY="18.0" text="Produse" />
+                        <TableView fx:id="cosVanzareTable" layoutX="14.0" layoutY="305.0" prefHeight="200.0" prefWidth="226.0">
+                          <columns>
+                            <TableColumn fx:id="denumireItemVanzareColumn" prefWidth="75.0" text="Denumire" />
+                            <TableColumn fx:id="cantitateItemVazareColumn" prefWidth="75.0" text="Cantitate" />
+                              <TableColumn fx:id="pretItemVanzareColumn" prefWidth="75.0" text="Preț" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="281.0" text="Coș" />
+                        <GridPane layoutX="263.0" layoutY="305.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="62.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField fx:id="denumireProdusVanzareTextField" disable="true" promptText="Denumire" GridPane.columnIndex="1" />
+                              <TextField fx:id="pretProdusVanzareTextField" disable="true" promptText="Pret" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="cantitateProdusVanzareTextField" promptText="Cantitate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="stocProdusVanzareTextField" disable="true" promptText="Stoc" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Denumire" />
+                              <Label text="Preț" GridPane.rowIndex="1" />
+                              <Label text="Stoc" GridPane.rowIndex="2" />
+                              <Label text="Cantitate" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                        <HBox layoutX="278.0" layoutY="427.0" prefHeight="26.0" prefWidth="170.0">
+                           <children>
+                              <Button fx:id="adaugaItemVanzareButton" mnemonicParsing="false" onAction="#handleAdaugaItemVanzareButton" text="Adaugă" />
+                              <Button fx:id="modificaItemVanzareButton" mnemonicParsing="false" onAction="#handleModificaItemVanzareButton" text="Modifică" />
+                              <Button fx:id="stergeItemVanzareButton" mnemonicParsing="false" onAction="#handleStergeItemVanzareButton" text="Șterge" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="263.0" layoutY="485.0" prefHeight="19.0" prefWidth="142.0">
+                           <children>
+                              <Label text="Total: " />
+                              <Label fx:id="totalCosVanzareValue" text="0" />
+                           </children>
+                        </HBox>
+                        <Line endX="100.0" layoutX="363.0" layoutY="473.0" startX="-100.0" />
+                        <Line endX="395.6000061035156" layoutX="115.0" layoutY="267.0" startX="-100.0" />
+                        <Button fx:id="plataVanzareButton" layoutX="379.0" layoutY="505.0" mnemonicParsing="false" onAction="#handlePlatesteVanzareButton" text="Finalizează &amp; plătește" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="comenziTab" text="Comenzi">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <children>
+                    <Button fx:id="logoutComandaButton" layoutX="839.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutButton" text="Logout" />
+                    <TableView fx:id="produseComandaTable" layoutX="14.0" layoutY="40.0" prefHeight="200.0" prefWidth="498.0">
+                        <columns>
+                            <TableColumn fx:id="denumireProdusComandaColumn" prefWidth="75.0" text="Denumire" />
+                            <TableColumn fx:id="pretProdusComandaColumn" prefWidth="46.199981689453125" text="Pret" />
+                            <TableColumn fx:id="umProdusComandaColumn" prefWidth="34.79998779296875" text="U.M." />
+                            <TableColumn fx:id="valabilitateProdusComandaColumn" prefWidth="94.40000915527344" text="Valabilitate" />
+                            <TableColumn fx:id="ingredienteProdusComandaColumn" prefWidth="76.4000244140625" text="Ingrediente" />
+                            <TableColumn fx:id="observatiiProdusComandaColumn" prefWidth="76.79998779296875" text="Observatii" />
+                            <TableColumn fx:id="disponibilitateProdusComandaColumn" prefWidth="92.60003662109375" text="Disponibilitate" />
+                        </columns>
+                    </TableView>
+                    <Label layoutX="24.0" layoutY="18.0" text="Produse" />
+                    <TableView fx:id="cosComandaTable" layoutX="14.0" layoutY="305.0" prefHeight="200.0" prefWidth="226.0">
+                        <columns>
+                            <TableColumn fx:id="denumireItemComandaColumn" prefWidth="75.0" text="Denumire" />
+                            <TableColumn fx:id="cantitateItemComandaColumn" prefWidth="75.0" text="Cantitate" />
+                            <TableColumn fx:id="pretItemComandaColumn" prefWidth="75.0" text="Preț" />
+                        </columns>
+                    </TableView>
+                    <Label layoutX="14.0" layoutY="281.0" text="Coș" />
+                    <GridPane layoutX="263.0" layoutY="305.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="62.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <TextField fx:id="denumireProdusComandaTextField" disable="true" promptText="Denumire" GridPane.columnIndex="1" />
+                            <TextField fx:id="pretProdusComandaTextField" disable="true" promptText="Pret" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <TextField fx:id="cantitateProdusComandaTextField" promptText="Cantitate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <TextField fx:id="obsComandaTextField" promptText="Observații" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <Label text="Denumire" />
+                            <Label text="Preț" GridPane.rowIndex="1" />
+                            <Label text="Observații" GridPane.rowIndex="2" />
+                            <Label text="Cantitate" GridPane.rowIndex="3" />
+                        </children>
+                    </GridPane>
+                    <HBox layoutX="278.0" layoutY="427.0" prefHeight="26.0" prefWidth="170.0">
+                        <children>
+                            <Button fx:id="adaugaItemComandaButton" mnemonicParsing="false" onAction="#handleAdaugaItemComandaButton" text="Adaugă" />
+                            <Button fx:id="modificaItemComandaButton" mnemonicParsing="false" onAction="#handleModificaItemComandaButton" text="Modifică" />
+                            <Button fx:id="stergeItemComandaButton" mnemonicParsing="false" onAction="#handleStergeItemComandaButton" text="Șterge" />
+                        </children>
+                    </HBox>
+                    <Line endX="100.0" layoutX="363.0" layoutY="473.0" startX="-100.0" />
+                    <Line endX="395.0" layoutX="115.0" layoutY="268.0" startX="-100.0" />
+                        <GridPane layoutX="263.0" layoutY="473.0" prefHeight="91.0" prefWidth="171.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="89.4" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="53.400000000000006" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                            <Label text="Total: " />
+                            <Label fx:id="totalCosComandaValue" text="0" GridPane.columnIndex="1" />
+                              <Label text="Avans necesar:" GridPane.rowIndex="1" />
+                              <Label text="Rest de plată:" GridPane.rowIndex="2" />
+                              <Label fx:id="avansComandaLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="restPlataComanda" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <GridPane layoutX="511.0" layoutY="305.0" prefHeight="150.0" prefWidth="264.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="80.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="192.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Nume" />
+                              <Label text="Nr. tel." GridPane.rowIndex="1" />
+                              <Label text="Data preluării" GridPane.rowIndex="2" />
+                              <Label text="Data ridicării" GridPane.rowIndex="3" />
+                              <TextField fx:id="numeClientTextField" promptText="Nume" GridPane.columnIndex="1" />
+                              <TextField fx:id="nrTelClientTextField" promptText="Nr. tel." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <DatePicker fx:id="dataPreluareComandaDatePicker" disable="true" editable="false" promptText="Data preluării" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="dataRidicareComandaDatePicker" promptText="Data ridicării" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Avans" GridPane.rowIndex="4" />
+                              <TextField fx:id="avansComandaTextField" promptText="Avans" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                        <Label layoutX="581.0" layoutY="281.0" text="Infromații suplimentare" />
+                        <TableView fx:id="comenziTable" layoutX="543.0" layoutY="40.0" prefHeight="200.0" prefWidth="289.0">
+                          <columns>
+                            <TableColumn fx:id="numeClientColumn" prefWidth="110.20001220703125" text="Nume" />
+                            <TableColumn fx:id="nrTelClientColumn" prefWidth="92.800048828125" text="Nr. tel." />
+                              <TableColumn fx:id="statusComandaColumn" prefWidth="84.7999267578125" text="Status" />
+                          </columns>
+                        </TableView>
+                        <HBox layoutX="511.0" layoutY="522.0" prefHeight="26.0" prefWidth="200.0" />
+                        <Label layoutX="543.0" layoutY="18.0" text="Comenzi" />
+                        <ChoiceBox fx:id="statusComandaChoiceBox" layoutX="745.0" layoutY="240.0" prefHeight="26.0" prefWidth="87.0" />
+                        <HBox layoutX="735.0" layoutY="509.0" prefHeight="26.0" prefWidth="108.0">
+                           <children>
+                          <Button fx:id="finalizeazaComandaButton" mnemonicParsing="false" onAction="#handleFinalizeazaComandaButton" text="Plasează" />
+                              <Button mnemonicParsing="false" text="Ridică" />
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="termeniConditiiCheckBox" layoutX="512.0" layoutY="513.0" mnemonicParsing="false" text="Acceptare Termeni și Condiții" />
+                </children>
+              </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>

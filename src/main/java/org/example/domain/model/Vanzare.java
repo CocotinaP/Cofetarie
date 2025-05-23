@@ -10,7 +10,7 @@ import java.util.List;
 public class Vanzare extends Entity<Integer>{
     @Column(columnDefinition = "TIMESTAMP")
     LocalDateTime data;
-    @OneToMany(mappedBy = "vanzare")
+    @OneToMany(mappedBy = "vanzare", cascade = CascadeType.PERSIST, orphanRemoval = true)
     List<ItemVanzare> produseVandute;
     @ManyToOne
     @JoinColumn(name = "vanzator_id", foreignKey = @ForeignKey(name = "fk_vanzare_vanzator"))

@@ -8,7 +8,8 @@ import java.util.Objects;
 @jakarta.persistence.Entity
 @Table(name = "ItemiVanzare")
 public class ItemVanzare extends Entity<Integer>{
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "produs_id", foreignKey = @ForeignKey(name = "fk_itemanzare_produs"))
     private Produs produs;
     @Positive
     private Float cantitate;

@@ -116,6 +116,8 @@ public class AdministratorHomeController {
     private TextField observatiiProdusTextField;
     @FXML
     private ComboBox<DisponibilitateProdus> disponibilitateProdusComboBox;
+    @FXML
+    private TextField stocProdusTextField;
 
     public void setService(Service service) {
         this.service = service;
@@ -201,6 +203,7 @@ public class AdministratorHomeController {
         ingredienteProdusTextField.setText(produs.getIngrediente());
         observatiiProdusTextField.setText(produs.getObservatii());
         disponibilitateProdusComboBox.setValue(produs.getDisponibiliateProdus());
+        stocProdusTextField.setText(produs.getStoc().toString());
     }
 
     private void updateAngajatFileds(Angajat angajat){
@@ -231,6 +234,7 @@ public class AdministratorHomeController {
     @FXML
     private void handleAdaugaProdusButton(MouseEvent mouseEvent) {
         try {
+            stocProdusTextField.setText("50");
             Produs produs = getProdusFromLabels();
             service.getProdusService().save(produs);
             initProduseModel();
@@ -254,11 +258,13 @@ public class AdministratorHomeController {
         String ingrediente = ingredienteProdusTextField.getText();
         String observatii = observatiiProdusTextField.getText();
         DisponibilitateProdus disponibilitate = disponibilitateProdusComboBox.getSelectionModel().getSelectedItem();
+        Integer stoc = Integer.parseInt(stocProdusTextField.getText());
 
         Produs produs = new Produs(denumire, pret, um, dataExpirarii);
         produs.setIngrediente(ingrediente);
         produs.setObservatii(observatii);
         produs.setDisponibiliateProdus(disponibilitate);
+        produs.setStoc(stoc);
 
         return produs;
     }
@@ -271,6 +277,7 @@ public class AdministratorHomeController {
         ingredienteProdusTextField.clear();
         observatiiProdusTextField.clear();
         disponibilitateProdusComboBox.setValue(null);
+        stocProdusTextField.clear();
     }
 
     private void clearAngajatTextFields(){
@@ -347,6 +354,8 @@ public class AdministratorHomeController {
     @FXML
     private void handleAdaugaAngajatButton(ActionEvent actionEvent) {
         try{
+            parolaAngajatTextField.setText("will be generated");
+            usernameAngajatTextField.setText("will be generated");
             Angajat angajat = getAngajatFromLabels();
             service.getAngajatService().save(angajat);
             angajatiModel.add(angajat);

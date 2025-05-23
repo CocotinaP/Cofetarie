@@ -17,6 +17,10 @@ public class ProdusValidator implements Validator<Produs> {
             errorMessages.append("Pretul nu poate fi negativ!\n");
         }
 
+        if (entity.getStoc() < 0){
+            errorMessages.append("Stocul nu poate fi negativ!\n");
+        }
+
         if (!errorMessages.isEmpty()){
             throw new ValidationException(errorMessages.toString());
         }

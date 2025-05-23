@@ -4,5 +4,6 @@ public enum ValidatorType {
     ANGAJAT,
     PRODUS,
     ITEM_VANZARE,
-    ITEM_COMANDA;
+    ITEM_COMANDA,
+    COMANDA;
 }

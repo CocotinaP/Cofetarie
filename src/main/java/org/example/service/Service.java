@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.domain.model.Angajat;
+import org.example.domain.model.Comanda;
 
 public interface Service {
     Angajat login(String username);
@@ -15,6 +16,10 @@ public interface Service {
 
     void setProdusService(ProdusService produsService);
 
+    void setVanzareService(VanzareService vanzareService);
+
+    void setComandaSerice(ComandaService comandaSerice);
+
     AdministratorService getAdministratorService();
 
     AngajatService getAngajatService();
@@ -24,4 +29,8 @@ public interface Service {
     VanzatorService getVanzatorService();
 
     ProdusService getProdusService();
+
+    VanzareService getVanzareService();
+
+    ComandaService getComandaService();
 }

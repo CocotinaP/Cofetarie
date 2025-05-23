@@ -1,10 +1,7 @@
 package org.example.domain.validator.factory;
 
 import org.example.domain.validator.Validator;
-import org.example.domain.validator.concrete_validator.AngajatValidator;
-import org.example.domain.validator.concrete_validator.ItemComandaValidator;
-import org.example.domain.validator.concrete_validator.ItemVanzareValidator;
-import org.example.domain.validator.concrete_validator.ProdusValidator;
+import org.example.domain.validator.concrete_validator.*;
 
 public class ValidatorFactory {
     private static ValidatorFactory instance;
@@ -19,6 +16,7 @@ public class ValidatorFactory {
             case PRODUS -> new ProdusValidator();
             case ITEM_VANZARE -> new ItemVanzareValidator();
             case ITEM_COMANDA -> new ItemComandaValidator();
+            case COMANDA -> new ComandaValidator();
             default -> null;
         };
     }

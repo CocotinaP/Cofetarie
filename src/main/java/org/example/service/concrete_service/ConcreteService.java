@@ -10,6 +10,8 @@ public class ConcreteService implements Service {
     private CofetarService cofetarService;
     private VanzatorService vanzatorService;
     private ProdusService produsService;
+    private VanzareService vanzareService;
+    private ComandaService comandaService;
 
     @Override
     public Angajat login(String username) {
@@ -46,6 +48,16 @@ public class ConcreteService implements Service {
     }
 
     @Override
+    public void setVanzareService(VanzareService vanzareService) {
+        this.vanzareService = vanzareService;
+    }
+
+    @Override
+    public void setComandaSerice(ComandaService comandaSerice) {
+        this.comandaService = comandaSerice;
+    }
+
+    @Override
     public AdministratorService getAdministratorService() {
         return administratorService;
     }
@@ -68,5 +80,15 @@ public class ConcreteService implements Service {
     @Override
     public ProdusService getProdusService() {
         return produsService;
+    }
+
+    @Override
+    public VanzareService getVanzareService() {
+        return vanzareService;
+    }
+
+    @Override
+    public ComandaService getComandaService() {
+        return comandaService;
     }
 }

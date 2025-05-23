@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @jakarta.persistence.Entity
@@ -26,6 +28,12 @@ public class Produs extends Entity<Integer>{
     private String observatii;
     @Enumerated(EnumType.STRING)
     private DisponibilitateProdus disponibilitateProdus;
+    @PositiveOrZero
+    private Integer stoc;
+    @OneToMany(mappedBy = "produs")
+    private List<ItemVanzare> itemiVanzare;
+    @OneToMany(mappedBy = "produs")
+    private List<ItemComanda> itemiComanda;
 
     public Produs(){
 
@@ -94,6 +102,30 @@ public class Produs extends Entity<Integer>{
         this.disponibilitateProdus = disponibilitateProdus;
     }
 
+    public Integer getStoc() {
+        return stoc;
+    }
+
+    public void setStoc(Integer stoc) {
+        this.stoc = stoc;
+    }
+
+    public List<ItemVanzare> getItemiVanzare() {
+        return itemiVanzare;
+    }
+
+    public void setItemiVanzare(List<ItemVanzare> itemiVanzare) {
+        this.itemiVanzare = itemiVanzare;
+    }
+
+    public List<ItemComanda> getItemiComanda() {
+        return itemiComanda;
+    }
+
+    public void setItemiComanda(List<ItemComanda> itemiComanda) {
+        this.itemiComanda = itemiComanda;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,6 +148,7 @@ public class Produs extends Entity<Integer>{
                 "| Data expriarii: " + dataExpriare +
                 "| Ingrediente: " + ingrediente +
                 "| Observatii: " + observatii +
-                "| Disponibiliate produs: " + disponibilitateProdus;
+                "| Disponibiliate produs: " + disponibilitateProdus +
+                "| Stoc: " + stoc;
     }
 }

@@ -18,15 +18,13 @@ public class Comanda extends Entity<Integer>{
     @NotBlank
     @Column(length = 20)
     private String nrTelClient;
-    @PastOrPresent
     private LocalDateTime dataPreluarii;
-    @PastOrPresent
     private LocalDateTime dataRidicarii;
     @Positive
     private Float pret;
     @Positive
     private Float avans;
-    @OneToMany(mappedBy = "comanda")
+    @OneToMany(mappedBy = "comanda", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ItemComanda> produseComandate;
     @Enumerated(EnumType.STRING)
     private StatusComanda statusComanda;

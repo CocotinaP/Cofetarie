@@ -18,7 +18,7 @@
             <Label text="Username:" />
             <Label text="Password:" GridPane.rowIndex="1" />
             <TextField fx:id="usernameTextField" GridPane.columnIndex="1" />
-            <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Label fx:id="errorMessageLabel" alignment="CENTER" layoutX="200.0" layoutY="230.0" maxWidth="1.7976931348623157E308" text="Label" visible="false" />

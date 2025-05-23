@@ -8,7 +8,8 @@ import java.util.Objects;
 @jakarta.persistence.Entity
 @Table(name = "ItemiComenzi")
 public class ItemComanda extends Entity<Integer>{
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "produs_id", foreignKey = @ForeignKey(name = "fk_itemComanda_produs"))
     private Produs produs;
     @Positive
     private Float cantitate;
@@ -23,6 +24,11 @@ public class ItemComanda extends Entity<Integer>{
 
     public ItemComanda(Produs produs) {
         this.produs = produs;
+    }
+
+    public ItemComanda(Produs produs, Float cantitate) {
+        this.produs = produs;
+        this.cantitate = cantitate;
     }
 
     public Produs getProdus() {

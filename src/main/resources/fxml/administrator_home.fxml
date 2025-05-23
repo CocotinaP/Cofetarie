@@ -99,6 +99,7 @@
                         <TextField fx:id="ingredienteProdusTextField" promptText="Ingrediente" GridPane.columnIndex="1" />
                         <TextField fx:id="observatiiProdusTextField" promptText="Observatii" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ComboBox fx:id="disponibilitateProdusComboBox" prefWidth="150.0" promptText="Disponibilitate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="stocProdusTextField" promptText="Stoc" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children></AnchorPane>

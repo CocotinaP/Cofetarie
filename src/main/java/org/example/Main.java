@@ -8,20 +8,10 @@ import org.example.controller.LoginController;
 import org.example.domain.model.*;
 import org.example.domain.validator.factory.ValidatorFactory;
 import org.example.domain.validator.factory.ValidatorType;
-import org.example.persistence.AdministratorReposiotry;
-import org.example.persistence.AngajatRepository;
-import org.example.persistence.database.hibernate.AdministratorHibernateDatabase;
-import org.example.persistence.database.hibernate.AngajatHibernateRepository;
-import org.example.persistence.database.hibernate.ProdusHibernateRepository;
-import org.example.persistence.ProdusRepository;
-import org.example.service.AdministratorService;
-import org.example.service.AngajatService;
-import org.example.service.ProdusService;
-import org.example.service.Service;
-import org.example.service.concrete_service.ConcreteAdministratorService;
-import org.example.service.concrete_service.ConcreteAngajatService;
-import org.example.service.concrete_service.ConcreteProdusService;
-import org.example.service.concrete_service.ConcreteService;
+import org.example.persistence.*;
+import org.example.persistence.database.hibernate.*;
+import org.example.service.*;
+import org.example.service.concrete_service.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -80,7 +70,7 @@ public class Main {
 
         // Commit și închidere sesiune
         session.getTransaction().commit();
-        session.close();
+        session.close();*
 
         // Închidere factory
         sessionFactory.close();
@@ -148,18 +138,26 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        AdministratorReposiotry repoAdmin = new AdministratorHibernateDatabase(Adminsitrator.class, ValidatorFactory.getInstance().getValidator(ValidatorType.ANGAJAT));
+        AdministratorReposiotry repoAdmin = new AdministratorHibernateRepository(Adminsitrator.class, ValidatorFactory.getInstance().getValidator(ValidatorType.ANGAJAT));
         AngajatRepository repoAngajat = new AngajatHibernateRepository(Angajat.class, ValidatorFactory.getInstance().getValidator(ValidatorType.ANGAJAT));
         ProdusRepository repoProdus = new ProdusHibernateRepository(ValidatorFactory.getInstance().getValidator(ValidatorType.PRODUS));
+        VanzareRepository vanzareRepository = new VanzareHibernateRepository();
+        ComandaRepository comandaRepository = new ComandaHibernateRepository();
 
         AdministratorService adminService = new ConcreteAdministratorService(repoAdmin);
         AngajatService angajatService = new ConcreteAngajatService(repoAngajat);
         ProdusService produsService = new ConcreteProdusService(repoProdus);
+        VanzareService vanzareService = new ConcreteVanzareService(vanzareRepository);
+        ComandaService comandaService = new ConcreteComandaService(comandaRepository);
 
         Service service = new ConcreteService();
         service.setAdministratorService(adminService);
         service.setAngajatService(angajatService);
         service.setProdusService(produsService);
+        service.setVanzareService(vanzareService);
+        service.setComandaSerice(comandaService);
+
+        vanzareService.addObserver(produsService);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
